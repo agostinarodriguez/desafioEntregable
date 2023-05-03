@@ -1,0 +1,22 @@
+<!-- index.handlebars -->
+<h1>Lista de productos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Imagen</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.price}}</td>
+        <td><img src="{{this.image}}" alt="{{this.name}}" width="50"></td>
+        <td><button class="btn-delete" data-id="{{this.id}}">Eliminar</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

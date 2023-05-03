@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <h1>{{title}}</h1>
+
+    <form action="/products" method="post">
+        <input type="text" name="name" placeholder="Nombre del producto">
+        <input type="text" name="price" placeholder="Precio">
+        <button type="submit">Agregar producto</button>
+    </form>
+
+    <ul>
+        {{#each products}}
+        <li>{{this.name}} - ${{this.price}} <button onclick="removeProduct('{{this.id}}')">Eliminar</button></li>
+        {{/each}}
+    </ul>
+
+    <script>
+        function removeProduct(productId) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('DELETE', `/products/${productId}`)
+            xhr.onload = () => {
+                location.reload()
+            };
+            xhr.send()
+        }
+    </script>
+</body>
+
+</html>

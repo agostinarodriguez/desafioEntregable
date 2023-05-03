@@ -1,0 +1,16 @@
+<ul id="productList"></ul>
+<script>
+  const socket = io()
+
+  //'products' de socket.io
+  socket.on('products', (products) => {
+    // actualiza la lista de productos en la página
+    const productList = document.getElementById('productList')
+    productList.innerHTML=''
+    products.forEach(product => {
+      const listItem = document.createElement('li')
+      listItem.innerText = `${product.id}: ${product.name} - $${product.price} <button onclick="removeProduct(${product.id})">Eliminar</button>`
+      productList.appendChild(listItem)
+    })
+  })
+</script>
